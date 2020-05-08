@@ -1,5 +1,8 @@
 package com.samdunkley.android.bakingapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecipeStep {
+public class RecipeStep implements Parcelable {
 
     private String id;
     private String shortDescription;
@@ -15,4 +18,37 @@ public class RecipeStep {
     private String videoURL;
     private String thumbnailURL;
 
+    protected RecipeStep(Parcel in) {
+        id = in.readString();
+        shortDescription = in.readString();
+        description = in.readString();
+        videoURL = in.readString();
+        thumbnailURL = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(shortDescription);
+        dest.writeString(description);
+        dest.writeString(videoURL);
+        dest.writeString(thumbnailURL);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<RecipeStep> CREATOR = new Creator<RecipeStep>() {
+        @Override
+        public RecipeStep createFromParcel(Parcel in) {
+            return new RecipeStep(in);
+        }
+
+        @Override
+        public RecipeStep[] newArray(int size) {
+            return new RecipeStep[size];
+        }
+    };
 }

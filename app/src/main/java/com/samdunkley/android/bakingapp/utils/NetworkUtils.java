@@ -1,7 +1,11 @@
 package com.samdunkley.android.bakingapp.utils;
 
+import androidx.annotation.NonNull;
+
+import com.samdunkley.android.bakingapp.adapters.RecipeAdapter;
 import com.samdunkley.android.bakingapp.model.Recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -21,19 +25,22 @@ public class NetworkUtils {
             .build();
 
 
-    public void getAndSetRecipes() {
+    public static void getAndSetRecipes(@NonNull ArrayList<Recipe> recipes, RecipeAdapter adapter) {
         Call<List<Recipe>> callGetRecipes = retrofit.create(RecipeEndpointInterface.class).getRecipes();
 
 
         callGetRecipes.enqueue(new Callback<List<Recipe>>() {
             @Override
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                // TODO: handle response
+                List<Recipe> responseRecipes = response.body();
+                recipes.clear();
+                recipes.addAll(responseRecipes);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                // TODO: handle error
+                t.getCause();
             }
         });
     }
