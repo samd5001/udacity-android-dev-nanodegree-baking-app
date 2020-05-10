@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/ingredients_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:text="@string/ingredients"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/text_margin"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:text="@string/steps"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipestep_list"
+        android:name="com.samdunkley.android.bakingapp.view.RecipeInfoListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".view.RecipeDetailsListActivity"
+        tools:listitem="@layout/recipe_detail_list_content" />
+</LinearLayout>

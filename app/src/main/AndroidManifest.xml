@@ -12,7 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.samdunkley.android.bakingapp.activities.MainActivity">
+        <activity
+            android:name=".view.RecipeDetailsListActivity"
+            android:label="@string/title_recipeinfo_list"/>
+        <activity
+            android:name=".view.RecipeDetailActivity"
+            android:label="@string/title_recipeinfo_detail"
+            android:parentActivityName=".view.RecipeDetailsListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.samdunkley.android.bakingapp.view.RecipeDetailsListActivity" />
+        </activity>
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

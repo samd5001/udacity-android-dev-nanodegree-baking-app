@@ -1,9 +1,10 @@
-package com.samdunkley.android.bakingapp.activities;
+package com.samdunkley.android.bakingapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.samdunkley.android.bakingapp.R;
@@ -55,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         recipesView.setAdapter(recipeAdapter);
 
         recipesView.addOnItemTouchListener(new TouchListener(this.getApplicationContext(), (view, position) -> {
-
+            Intent intent = new Intent(this, RecipeDetailsListActivity.class);
+            intent.putExtra(RecipeDetailsListActivity.EXTRA_RECIPE, recipes.get(position));
+            startActivity(intent);
         }));
 
         if (getData) {
