@@ -9,7 +9,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".view.RecipeDetailsListActivity">
+    tools:context=".view.activities.RecipeDetailsListActivity">
 
     <LinearLayout
         android:layout_height="match_parent"

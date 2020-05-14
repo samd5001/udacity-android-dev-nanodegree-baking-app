@@ -12,19 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".IngredientsWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recipe_ingredient_widget_info" />
+        </receiver>
+
         <activity
-            android:name=".view.RecipeDetailsListActivity"
-            android:label="@string/title_recipeinfo_list"/>
-        <activity
-            android:name=".view.RecipeDetailActivity"
-            android:label="@string/title_recipeinfo_detail"
-            android:parentActivityName=".view.RecipeDetailsListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".view.activities.RecipeDetailsListActivity"
+            android:label="@string/title_recipeinfo_list"
+            android:parentActivityName=".view.activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.samdunkley.android.bakingapp.view.RecipeDetailsListActivity" />
+                android:value="com.samdunkley.android.bakingapp.view.activities.MainActivity" />
         </activity>
-        <activity android:name=".view.MainActivity">
+        <activity
+            android:name=".view.activities.RecipeDetailActivity"
+            android:label="@string/title_recipeinfo_detail" />
+        <activity android:name=".view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

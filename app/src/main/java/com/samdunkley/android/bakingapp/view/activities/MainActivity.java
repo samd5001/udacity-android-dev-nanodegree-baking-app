@@ -1,11 +1,13 @@
-package com.samdunkley.android.bakingapp.view;
+package com.samdunkley.android.bakingapp.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
 import com.samdunkley.android.bakingapp.R;
 import com.samdunkley.android.bakingapp.adapters.RecipeAdapter;
@@ -25,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.recipe_list) RecyclerView recipesView;
 
     private ArrayList<Recipe> recipes;
-    private RecipeAdapter recipeAdapter;
 
 
     @Override
@@ -50,9 +51,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         recipesView.setHasFixedSize(true);
-        recipesView.setLayoutManager(new GridLayoutManager(this, 1));
+        int columns = calculateNoOfColumns();
+        if (columns == 1) {
+            recipesView.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            recipesView.setLayoutManager(new GridLayoutManager(this, columns));
+        }
 
-        recipeAdapter = new RecipeAdapter(recipes);
+        RecipeAdapter recipeAdapter = new RecipeAdapter(recipes);
         recipesView.setAdapter(recipeAdapter);
 
         recipesView.addOnItemTouchListener(new TouchListener(this.getApplicationContext(), (view, position) -> {
@@ -65,5 +71,11 @@ public class MainActivity extends AppCompatActivity {
             NetworkUtils.getAndSetRecipes(recipes, recipeAdapter);
         }
 
+    }
+
+    private int calculateNoOfColumns() {
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        float screenWidthDp = displayMetrics.widthPixels / displayMetrics.density;
+        return (int) (screenWidthDp / 320 + 0.5); // +0.5 for correct rounding to int.
     }
 }

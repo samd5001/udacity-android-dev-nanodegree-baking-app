@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
      android:layout_height="match_parent"
-     android:layout_width="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout 
+     android:layout_width="match_parent"
+    tools:context=".view.fragments.RecipeStepFragment">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context=".view.RecipeDetailActivity"
-        tools:ignore="MergeRootFrame">
+        android:orientation="vertical">
 
 
-        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/recipe_step_exo_player"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="32dp"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/recipe_step_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_step_exo_player"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="32dp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/recipe_step_instruction"
@@ -35,9 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/text_margin"
-            android:textIsSelectable="true"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_step_image"
-            tools:context=".view.RecipeStepFragment" />
+            android:textIsSelectable="true" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</ScrollView>

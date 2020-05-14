@@ -1,4 +1,4 @@
-package com.samdunkley.android.bakingapp.view;
+package com.samdunkley.android.bakingapp.view.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 
 import com.samdunkley.android.bakingapp.R;
 import com.samdunkley.android.bakingapp.model.RecipeIngredient;
-import com.samdunkley.android.bakingapp.view.dummy.DummyContent;
-import com.samdunkley.android.bakingapp.view.dummy.DummyContent.DummyItem;
+import com.samdunkley.android.bakingapp.adapters.RecipeIngredientsAdapter;
 
 import java.util.ArrayList;
 

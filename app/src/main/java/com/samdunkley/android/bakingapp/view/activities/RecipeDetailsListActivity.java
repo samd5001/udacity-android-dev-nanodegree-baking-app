@@ -1,4 +1,4 @@
-package com.samdunkley.android.bakingapp.view;
+package com.samdunkley.android.bakingapp.view.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,13 +15,15 @@ import com.samdunkley.android.bakingapp.adapters.RecipeStepsAdapter;
 import com.samdunkley.android.bakingapp.model.Recipe;
 import com.samdunkley.android.bakingapp.model.RecipeStep;
 import com.samdunkley.android.bakingapp.utils.TouchListener;
+import com.samdunkley.android.bakingapp.view.fragments.RecipeIngredientsFragment;
+import com.samdunkley.android.bakingapp.view.fragments.RecipeStepFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecipeDetailsListActivity extends AppCompatActivity {
 
-    static final String EXTRA_RECIPE = "recipe";
+    public static final String EXTRA_RECIPE = "recipe";
     public static final String EXTRA_NAME = "recipe_name";
 
     private Recipe recipe;
@@ -29,6 +31,12 @@ public class RecipeDetailsListActivity extends AppCompatActivity {
 
     @BindView(R.id.recipestep_list) RecyclerView stepList;
     @BindView(R.id.ingredients_link) TextView ingredientLink;
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(EXTRA_RECIPE, recipe);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +55,18 @@ public class RecipeDetailsListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if (intent != null && intent.hasExtra(EXTRA_RECIPE)) {
+        if (savedInstanceState != null && savedInstanceState.containsKey(EXTRA_RECIPE)) {
+            recipe = savedInstanceState.getParcelable(EXTRA_RECIPE);
+        } else if (intent != null && intent.hasExtra(EXTRA_RECIPE)) {
             recipe = intent.getParcelableExtra(EXTRA_RECIPE);
+        }
 
-            if (recipe != null) {
-                setupRecyclerView();
-                setupIngredientsLink();
+        if (recipe != null) {
+            setupRecyclerView();
+            setupIngredientsLink();
 
-                if (actionBar != null) {
-                    actionBar.setTitle(recipe.getName());
-                }
+            if (actionBar != null) {
+                actionBar.setTitle(recipe.getName());
             }
         }
 
@@ -81,7 +91,9 @@ public class RecipeDetailsListActivity extends AppCompatActivity {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, RecipeDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, recipe.getName());
-                intent.putExtra(RecipeStepFragment.STEP_ARG, recipeDetail);
+                intent.putExtra(RecipeStepFragment.STEP_ARG, position);
+                intent.putExtra(RecipeDetailsListActivity.EXTRA_RECIPE, recipe);
+
                 context.startActivity(intent);
             }
         }));
@@ -103,6 +115,8 @@ public class RecipeDetailsListActivity extends AppCompatActivity {
                 Intent intent = new Intent(context, RecipeDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, recipe.getName());
                 intent.putExtra(RecipeIngredientsFragment.INGREDIENTS_ARG, recipe.getIngredients());
+                intent.putExtra(RecipeStepFragment.STEP_ARG, -1);
+                intent.putExtra(RecipeDetailsListActivity.EXTRA_RECIPE, recipe);
                 context.startActivity(intent);
             }
         });

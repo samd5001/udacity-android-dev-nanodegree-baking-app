@@ -20,12 +20,11 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsAdapter.
 
     private final List<RecipeStep> recipeSteps;
 
-    public RecipeStepsAdapter(
-                                  List<RecipeStep> recipeSteps
-                                  ) {
+    public RecipeStepsAdapter(List<RecipeStep> recipeSteps) {
         this.recipeSteps = recipeSteps;
     }
 
+    @NonNull
     @Override
     public RecipeStepHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -34,11 +33,15 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(final RecipeStepHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecipeStepHolder holder, int position) {
         RecipeStep recipeStep = recipeSteps.get(position);
 
-        holder.detailIdView.setText(recipeStep.getId());
-        holder.detailTextView.setText(recipeStep.getShortDescription());
+        if (recipeStep.getId().equalsIgnoreCase("0")) {
+            holder.detailIdView.setText(recipeStep.getShortDescription());
+        } else {
+            holder.detailIdView.setText(holder.itemView.getContext().getString(R.string.step_number_template, recipeStep.getId()));
+            holder.detailTextView.setText(recipeStep.getShortDescription());
+        }
     }
 
     @Override
@@ -46,7 +49,7 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsAdapter.
         return recipeSteps.size();
     }
 
-    class RecipeStepHolder extends RecyclerView.ViewHolder {
+    static class RecipeStepHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.detail_id)
         TextView detailIdView;

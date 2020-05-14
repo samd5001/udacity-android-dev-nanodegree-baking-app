@@ -1,4 +1,4 @@
-package com.samdunkley.android.bakingapp.view;
+package com.samdunkley.android.bakingapp.adapters;
 
 import androidx.recyclerview.widget.RecyclerView;
 
