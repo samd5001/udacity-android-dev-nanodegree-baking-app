@@ -96,8 +96,6 @@ public class RecipeStepFragment extends Fragment {
                         .into(thumbnail);
 
                 thumbnail.setVisibility(View.VISIBLE);
-        } else {
-                thumbnail.setImageResource(R.drawable.no_image_found);
         }
 
         instructions.setText(recipeStep.getDescription());

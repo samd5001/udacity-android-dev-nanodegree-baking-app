@@ -6,6 +6,9 @@
     <string name="ingredients">View Ingredients</string>
     <string name="step_number_template">#%1$s</string>
     <string name="steps">Steps</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
+    <string name="set_widget">Ingredient Widget Set</string>
+    <string name="clear_widget">Ingredient Widget Cleared</string>
+    <string name="widget_placeholder">Select a Recipe in app to show the ingredients here</string>
+    <string name="recipe_name_palceholder">Recipe Name</string>
+
 </resources>

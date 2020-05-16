@@ -14,19 +14,23 @@
             android:id="@+id/recipe_step_exo_player"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="32dp"
-            android:visibility="invisible" />
+            android:layout_marginStart="@dimen/step_player_margin"
+            android:layout_marginLeft="@dimen/step_player_margin"
+            android:layout_marginEnd="@dimen/step_player_margin"
+            android:layout_marginRight="@dimen/step_player_margin"
+            android:layout_marginTop="@dimen/step_player_margin"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/recipe_step_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="32dp"
-            android:visibility="invisible" />
+            android:layout_marginStart="@dimen/step_player_margin"
+            android:layout_marginLeft="@dimen/step_player_margin"
+            android:layout_marginEnd="@dimen/step_player_margin"
+            android:layout_marginRight="@dimen/step_player_margin"
+            android:layout_marginTop="@dimen/step_player_margin"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/recipe_step_instruction"

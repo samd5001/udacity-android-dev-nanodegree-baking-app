@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="26sp"
+        android:textSize="@dimen/recipe_name_size"
         android:textStyle="bold"
-        tools:text="Recipe Name" />
+        tools:text="@string/recipe_name_palceholder" />
 </androidx.cardview.widget.CardView>

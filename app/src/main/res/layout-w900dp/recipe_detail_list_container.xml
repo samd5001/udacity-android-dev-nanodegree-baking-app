@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginLeft="@dimen/ingredients_margin"
+    android:layout_marginStart="@dimen/ingredients_margin"
+    android:layout_marginRight="@dimen/ingredients_margin"
+    android:layout_marginEnd="@dimen/ingredients_margin"
     android:baselineAligned="false"
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
@@ -14,8 +16,10 @@
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="@dimen/item_width"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="@dimen/ingredients_margin"
+        android:layout_marginStart="@dimen/ingredients_margin"
+        android:layout_marginRight="@dimen/ingredients_margin"
+        android:layout_marginEnd="@dimen/ingredients_margin"
         android:orientation="vertical">
 
         <include layout="@layout/recipe_detail_list" />
