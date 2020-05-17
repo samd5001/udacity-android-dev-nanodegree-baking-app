@@ -44,12 +44,20 @@ public class NetworkUtils {
                     recipes.addAll(responseRecipes);
                     adapter.notifyDataSetChanged();
                 }
+
+                if (fetchIdlingResource == null) {
+                    fetchIdlingResource = new FetchIdlingResource();
+                }
                 fetchIdlingResource.setIdleState();
+
             }
 
             @Override
             public void onFailure(@NonNull Call<List<Recipe>> call, @NonNull Throwable t) {
                 t.printStackTrace();
+                if (fetchIdlingResource == null) {
+                    fetchIdlingResource = new FetchIdlingResource();
+                }
                 fetchIdlingResource.setIdleState();
                 Toast.makeText(context, R.string.network_error_text, Toast.LENGTH_LONG).show();
             }
