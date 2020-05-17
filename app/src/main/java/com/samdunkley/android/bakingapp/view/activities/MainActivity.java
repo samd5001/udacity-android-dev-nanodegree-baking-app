@@ -1,13 +1,13 @@
 package com.samdunkley.android.bakingapp.view.activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
 
 import com.samdunkley.android.bakingapp.R;
 import com.samdunkley.android.bakingapp.adapters.RecipeAdapter;
@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String RECIPE_STATE_KEY = "recipes";
 
-    @BindView(R.id.recipe_list) RecyclerView recipesView;
+    @BindView(R.id.recipe_list)
+    RecyclerView recipesView;
 
     private ArrayList<Recipe> recipes;
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         if (getData) {
-            NetworkUtils.getAndSetRecipes(recipes, recipeAdapter);
+            NetworkUtils.getAndSetRecipes(recipes, recipeAdapter, this);
         }
 
     }

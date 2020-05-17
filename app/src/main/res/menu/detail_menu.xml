@@ -4,8 +4,9 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/pref_show_in_widget"
-            android:title="Show In Widget"
+            android:checkable="true"
             android:icon="@drawable/baseline_star_outline_24"
+            android:title="@string/show_in_widget"
             app:showAsAction="always" />
     </group>
 </menu>

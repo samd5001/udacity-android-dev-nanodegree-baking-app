@@ -12,13 +12,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecipeStep implements Parcelable {
 
+    public static final Creator<RecipeStep> CREATOR = new Creator<RecipeStep>() {
+        @Override
+        public RecipeStep createFromParcel(Parcel in) {
+            return new RecipeStep(in);
+        }
+
+        @Override
+        public RecipeStep[] newArray(int size) {
+            return new RecipeStep[size];
+        }
+    };
     private String id;
     private String shortDescription;
     private String description;
     private String videoURL;
     private String thumbnailURL;
 
-    protected RecipeStep(Parcel in) {
+    private RecipeStep(Parcel in) {
         id = in.readString();
         shortDescription = in.readString();
         description = in.readString();
@@ -39,16 +50,4 @@ public class RecipeStep implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<RecipeStep> CREATOR = new Creator<RecipeStep>() {
-        @Override
-        public RecipeStep createFromParcel(Parcel in) {
-            return new RecipeStep(in);
-        }
-
-        @Override
-        public RecipeStep[] newArray(int size) {
-            return new RecipeStep[size];
-        }
-    };
 }

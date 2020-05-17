@@ -1,12 +1,12 @@
 package com.samdunkley.android.bakingapp.adapters;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.samdunkley.android.bakingapp.R;
 import com.samdunkley.android.bakingapp.model.RecipeStep;

@@ -3,18 +3,16 @@ package com.samdunkley.android.bakingapp.view.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import com.google.android.exoplayer2.SimpleExoPlayer;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -34,18 +32,19 @@ public class RecipeStepFragment extends Fragment {
     public static final String STEP_ARG = "recipe_step";
     private static final String POSITION = "position";
     private static final String PLAY_WHEN_READY = "play";
-
+    @BindView(R.id.recipe_step_image)
+    ImageView thumbnail;
+    @BindView(R.id.recipe_step_instruction)
+    TextView instructions;
+    @BindView(R.id.recipe_step_exo_player)
+    PlayerView playerView;
     private RecipeStep recipeStep;
-
-    @BindView(R.id.recipe_step_image) ImageView thumbnail;
-    @BindView(R.id.recipe_step_instruction) TextView instructions;
-    @BindView(R.id.recipe_step_exo_player) PlayerView playerView;
-
     private SimpleExoPlayer exoPlayer;
     private long playerPosition = 0;
     private boolean playWhenReady = false;
 
-    public RecipeStepFragment() { }
+    public RecipeStepFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,14 +87,14 @@ public class RecipeStepFragment extends Fragment {
         if (!recipeStep.getVideoURL().isEmpty()) {
             setupPlayer();
         } else if (!recipeStep.getThumbnailURL().isEmpty()) {
-                Picasso
-                        .get()
-                        .load(recipeStep.getThumbnailURL())
-                        .error(R.drawable.no_image_found)
-                        .fit()
-                        .into(thumbnail);
+            Picasso
+                    .get()
+                    .load(recipeStep.getThumbnailURL())
+                    .error(R.drawable.no_image_found)
+                    .fit()
+                    .into(thumbnail);
 
-                thumbnail.setVisibility(View.VISIBLE);
+            thumbnail.setVisibility(View.VISIBLE);
         }
 
         instructions.setText(recipeStep.getDescription());
@@ -134,7 +133,6 @@ public class RecipeStepFragment extends Fragment {
             playerView.setVisibility(View.VISIBLE);
         }
     }
-
 
 
 }

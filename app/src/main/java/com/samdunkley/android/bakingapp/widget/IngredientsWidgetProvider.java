@@ -17,8 +17,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class IngredientsWidgetProvider extends AppWidgetProvider {
 
-    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                        int appWidgetId) {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredients_widget);
 

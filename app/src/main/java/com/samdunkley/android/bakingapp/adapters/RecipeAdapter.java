@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHolder> {
 
-    private List<Recipe> recipes;
+    private final List<Recipe> recipes;
 
     public RecipeAdapter(List<Recipe> recipes) {
         this.recipes = recipes;
@@ -55,10 +55,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
         return recipes == null ? 0 : recipes.size();
     }
 
-    class RecipeHolder extends RecyclerView.ViewHolder {
+    static class RecipeHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.recipe_image) ImageView recipeImageView;
-        @BindView(R.id.recipe_name) TextView recipeNameView;
+        @BindView(R.id.recipe_image)
+        ImageView recipeImageView;
+        @BindView(R.id.recipe_name)
+        TextView recipeNameView;
 
         RecipeHolder(@NonNull View view) {
             super(view);

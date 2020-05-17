@@ -1,11 +1,12 @@
 package com.samdunkley.android.bakingapp.adapters;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.samdunkley.android.bakingapp.R;
 import com.samdunkley.android.bakingapp.model.RecipeIngredient;
@@ -23,6 +24,7 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
         this.ingredients = ingredients;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -33,9 +35,8 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         RecipeIngredient ingredient = ingredients.get(position);
-        holder.quantityView.setText(ingredient.getQuantity() + ingredient.getMeasure());
+        holder.quantityView.setText(holder.quantityView.getContext().getString(R.string.quantity_template, ingredient.getQuantity(), ingredient.getMeasure()));
         holder.nameView.setText(ingredient.getIngredient());
-
     }
 
     @Override
@@ -43,12 +44,14 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
         return ingredients.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.ingredient_quantity) TextView quantityView;
-        @BindView(R.id.ingredient_name) TextView nameView;
+        @BindView(R.id.ingredient_quantity)
+        TextView quantityView;
+        @BindView(R.id.ingredient_name)
+        TextView nameView;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }

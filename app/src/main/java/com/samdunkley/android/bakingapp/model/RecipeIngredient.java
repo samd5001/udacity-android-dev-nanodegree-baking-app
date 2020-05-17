@@ -12,11 +12,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecipeIngredient implements Parcelable {
 
+    public static final Creator<RecipeIngredient> CREATOR = new Creator<RecipeIngredient>() {
+        @Override
+        public RecipeIngredient createFromParcel(Parcel in) {
+            return new RecipeIngredient(in);
+        }
+
+        @Override
+        public RecipeIngredient[] newArray(int size) {
+            return new RecipeIngredient[size];
+        }
+    };
+
     private Double quantity;
     private String measure;
     private String ingredient;
 
-    protected RecipeIngredient(Parcel in) {
+    private RecipeIngredient(Parcel in) {
         if (in.readByte() == 0) {
             quantity = null;
         } else {
@@ -42,16 +54,4 @@ public class RecipeIngredient implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<RecipeIngredient> CREATOR = new Creator<RecipeIngredient>() {
-        @Override
-        public RecipeIngredient createFromParcel(Parcel in) {
-            return new RecipeIngredient(in);
-        }
-
-        @Override
-        public RecipeIngredient[] newArray(int size) {
-            return new RecipeIngredient[size];
-        }
-    };
 }

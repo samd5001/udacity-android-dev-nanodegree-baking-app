@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.samdunkley.android.bakingapp.BuildConfig;
 import com.samdunkley.android.bakingapp.R;
-
 import com.samdunkley.android.bakingapp.adapters.RecipeStepsAdapter;
 import com.samdunkley.android.bakingapp.model.Recipe;
 import com.samdunkley.android.bakingapp.model.RecipeIngredient;
@@ -37,13 +36,13 @@ public class RecipeDetailsListActivity extends AppCompatActivity {
     public static final String PREF_NAME = EXTRA_NAME;
     public static final String PREF_ID = "recipe_id";
     public static final String PREF_INGREDIENTS = "recipe_ingredients";
-
+    @BindView(R.id.recipestep_list)
+    RecyclerView stepList;
+    @BindView(R.id.ingredients_link)
+    TextView ingredientLink;
     private Recipe recipe;
     private boolean twoPane;
     private SharedPreferences prefs;
-
-    @BindView(R.id.recipestep_list) RecyclerView stepList;
-    @BindView(R.id.ingredients_link) TextView ingredientLink;
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -71,7 +70,7 @@ public class RecipeDetailsListActivity extends AppCompatActivity {
             if (item.isChecked()) {
                 item.setChecked(false).setIcon(R.drawable.baseline_star_outline_24);
                 prefs.edit().clear().apply();
-                Toast.makeText(this, R.string.clear_widget, Toast.LENGTH_SHORT);
+                Toast.makeText(this, R.string.clear_widget, Toast.LENGTH_SHORT).show();
             } else {
                 item.setChecked(true).setIcon(R.drawable.baseline_star_24);
                 StringBuilder ingredientsString = new StringBuilder();
@@ -86,7 +85,7 @@ public class RecipeDetailsListActivity extends AppCompatActivity {
                         .putString(PREF_NAME, recipe.getName())
                         .putString(PREF_INGREDIENTS, ingredientsString.toString())
                         .apply();
-                Toast.makeText(this, R.string.set_widget, Toast.LENGTH_SHORT);
+                Toast.makeText(this, R.string.set_widget, Toast.LENGTH_SHORT).show();
             }
 
             Intent intent = new Intent(this, IngredientsWidgetProvider.class);

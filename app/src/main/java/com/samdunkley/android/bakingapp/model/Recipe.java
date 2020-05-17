@@ -14,6 +14,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Recipe implements Parcelable {
 
+    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
     private Integer id;
     private String name;
     private Integer servings;
@@ -21,7 +32,7 @@ public class Recipe implements Parcelable {
     private ArrayList<RecipeIngredient> ingredients;
     private ArrayList<RecipeStep> steps;
 
-    protected Recipe(Parcel in) {
+    private Recipe(Parcel in) {
         if (in.readByte() == 0) {
             id = null;
         } else {
@@ -62,16 +73,4 @@ public class Recipe implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
-        @Override
-        public Recipe createFromParcel(Parcel in) {
-            return new Recipe(in);
-        }
-
-        @Override
-        public Recipe[] newArray(int size) {
-            return new Recipe[size];
-        }
-    };
 }

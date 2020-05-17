@@ -5,10 +5,17 @@
     <string name="title_recipeinfo_detail">Recipe Step</string>
     <string name="ingredients">View Ingredients</string>
     <string name="step_number_template">#%1$s</string>
+    <string name="quantity_template">%1$f%2$s</string>
     <string name="steps">Steps</string>
     <string name="set_widget">Ingredient Widget Set</string>
     <string name="clear_widget">Ingredient Widget Cleared</string>
     <string name="widget_placeholder">Select a Recipe in app to show the ingredients here</string>
-    <string name="recipe_name_palceholder">Recipe Name</string>
+    <string name="recipe_name_placeholder">Recipe Name</string>
+    <string name="show_in_widget">Show In Widget</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="recipe_image_cd">Name of recipe</string>
+    <string name="recipe_thumbnail_cd">Thumbnail for step</string>
+    <string name="network_error_text">Error downloading recipes, please try again later</string>
 
 </resources>

@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,13 +21,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     private static final int INGREDIENT_POSITION = -1;
     private static final String POSITION_STATE = "position";
-
+    @BindView(R.id.bottom_nav)
+    BottomNavigationView bottomNavigationMenu;
     private Recipe recipe;
     private Integer position;
     private String name;
-
-    @BindView(R.id.bottom_nav)
-    BottomNavigationView bottomNavigationMenu;
     private Menu navigationMenu;
 
     @Override
@@ -89,7 +87,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         if (recipe == null || position == null) {
             return;
-         }
+        }
 
         if (INGREDIENT_POSITION == position) {
             setIngredientsFragment();
@@ -171,7 +169,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
 
     }
-
 
 
 }

@@ -1,7 +1,11 @@
 package com.samdunkley.android.bakingapp.utils;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
+import com.samdunkley.android.bakingapp.R;
 import com.samdunkley.android.bakingapp.adapters.RecipeAdapter;
 import com.samdunkley.android.bakingapp.model.Recipe;
 
@@ -24,24 +28,40 @@ public class NetworkUtils {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
+    private static FetchIdlingResource fetchIdlingResource;
 
-    public static void getAndSetRecipes(@NonNull ArrayList<Recipe> recipes, RecipeAdapter adapter) {
+
+    public static void getAndSetRecipes(@NonNull ArrayList<Recipe> recipes, RecipeAdapter adapter, Context context) {
         Call<List<Recipe>> callGetRecipes = retrofit.create(RecipeEndpointInterface.class).getRecipes();
 
 
         callGetRecipes.enqueue(new Callback<List<Recipe>>() {
             @Override
-            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
+            public void onResponse(@NonNull Call<List<Recipe>> call, @NonNull Response<List<Recipe>> response) {
                 List<Recipe> responseRecipes = response.body();
-                recipes.clear();
-                recipes.addAll(responseRecipes);
-                adapter.notifyDataSetChanged();
+                if (responseRecipes != null) {
+                    recipes.clear();
+                    recipes.addAll(responseRecipes);
+                    adapter.notifyDataSetChanged();
+                }
+                fetchIdlingResource.setIdleState();
             }
 
             @Override
-            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                t.getCause();
+            public void onFailure(@NonNull Call<List<Recipe>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                fetchIdlingResource.setIdleState();
+                Toast.makeText(context, R.string.network_error_text, Toast.LENGTH_LONG).show();
             }
         });
     }
+
+    public static FetchIdlingResource getFetchIdlingResource() {
+        if (fetchIdlingResource == null) {
+            fetchIdlingResource = new FetchIdlingResource();
+        }
+
+        return fetchIdlingResource;
+    }
+
 }
